@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip install --user flask'
+                    sh 'pip install flask'
                 }
             }
         }
