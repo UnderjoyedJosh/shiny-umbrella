@@ -4,7 +4,7 @@ class SimpleTest(unittest.TestCase):
   
     # Returns True or False. 
     def test(self):        
-        self.assertTrue(True)
+        self.assertTrue(False)
   
 if __name__ == '__main__':
     unittest.main()
