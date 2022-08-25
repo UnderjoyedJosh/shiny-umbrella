@@ -8,13 +8,14 @@ pipeline {
                 script{
                     sh 'docker build -t testflask:latest .'
                     sh 'docker run -d -p 8000:8000 testflask:latest'
+                    sh 'docker exec testflask python /app/flasktests.py'
                 }
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'docker exec testflask python flasktests.py'
+                sh 'docker exec testflask python /app/flasktests.py'
             }
         }
         stage('Deploy') {
