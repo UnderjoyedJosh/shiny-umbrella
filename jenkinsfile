@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'                
                 script{
+                    sh 'docker rm -f flask_container'
                     sh 'docker build -t testflask:latest .'
                     sh 'docker run --name flask_container -d -p 8000:8000 testflask:latest'
                     sh 'docker exec flask_container python /app/flasktests.py'
@@ -22,6 +23,14 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 //sh 'docker exec flask_container python3 flask.py'
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                echo 'Cleanup...'
+                script {
+                    sh 'docker rm -f flask_container'
+                }
             }
         }
     }
