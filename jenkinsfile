@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                docker build . -t testflask:latest
+                docker build -t testflask:latest .
                 docker run -d -p 8000:8000 testflask:latest
             }
         }
